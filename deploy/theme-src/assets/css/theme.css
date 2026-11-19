@@ -1,0 +1,555 @@
+/* Дополнения темы NVGSO к public.css */
+
+body.admin-bar .masthead { top: 32px; }
+@media (max-width: 782px) {
+	body.admin-bar .masthead { top: 46px; }
+}
+
+.is-hidden { display: none !important; }
+
+/* Правовые страницы: контент + оглавление */
+.legal-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 18rem;
+	gap: 2.5rem;
+	align-items: start;
+}
+.legal-layout .toc { position: sticky; top: 7rem; }
+.legal-layout .prose { max-width: 52rem; }
+@media (max-width: 1024px) {
+	.legal-layout { grid-template-columns: 1fr; }
+	.legal-layout .toc { position: static; order: -1; }
+}
+
+/* Новости и статьи */
+.article-meta { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.article-meta .news-card__date { margin: 0; }
+.news-card__date { display: inline-flex; align-items: center; gap: .35rem; }
+
+/* Поиск */
+.search-results .doc-row { text-decoration: none; }
+.search-results .doc-row .doc-row__title { font-size: 1rem; }
+.search-results .doc-row .muted { display: block; margin-top: .25rem; }
+
+/* Таблицы */
+.table-wrap { overflow-x: auto; }
+.data-table { width: 100%; }
+
+/* Галерея */
+a.gallery-item { display: block; text-decoration: none; }
+a.gallery-item:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* Уведомления */
+.toast-wrap {
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	z-index: 3000;
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	max-width: 22rem;
+}
+.toast {
+	background: var(--navy);
+	color: #fff;
+	padding: .8rem 1rem;
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+	font-size: .875rem;
+	opacity: 0;
+	transform: translateY(8px);
+	transition: opacity .25s ease, transform .25s ease;
+}
+.toast.is-visible { opacity: 1; transform: translateY(0); }
+.toast--error { background: var(--red-700); }
+
+/* Формы: звёздочки и подсказки */
+.form-card .field > label { font-weight: 700; font-size: .8125rem; color: var(--navy); }
+.form-card .form-consent { margin-top: 1rem; }
+.form-card .btn { margin-top: .25rem; }
+
+/* Контент WordPress */
+.prose img { max-width: 100%; height: auto; border-radius: var(--radius); }
+.prose iframe { max-width: 100%; }
+.prose blockquote { border-left: 3px solid var(--gold); padding-left: 1rem; color: var(--muted); }
+
+/* Админ-бар не должен перекрывать шапку */
+@media (min-width: 783px) {
+	body.admin-bar .mobile-nav { top: 32px; }
+}
+
+/* Cookie-баннер не перекрывает кнопки на мобильных */
+@media (max-width: 720px) {
+	.cookie-banner__actions { width: 100%; }
+	.cookie-banner__actions .btn { flex: 1 1 auto; }
+}
+
+/* Постраничная навигация WordPress */
+.pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.4rem;
+	height: 2.4rem;
+	padding: 0 .7rem;
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	background: #fff;
+	color: var(--navy);
+	font-weight: 700;
+	font-size: .8125rem;
+	text-decoration: none;
+}
+.pagination .page-numbers.current,
+.pagination .page-numbers:hover {
+	background: var(--navy);
+	border-color: var(--navy);
+	color: #fff;
+}
+
+/* Запрет случайного двойного тапа/зума при клике по шапке.
+   Pinch-zoom и панель доступности продолжают работать. */
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	touch-action: manipulation;
+}
+body { -webkit-tap-highlight-color: transparent; }
+.topbar a, .topbar button,
+.masthead a, .masthead button,
+.alert-strip a,
+.footer a,
+.hotline, .brand, .hotline__num {
+	touch-action: manipulation;
+}
+
+/* Все ссылки и кнопки: без двойного тапа, pinch-zoom сохраняется */
+a, button, [role="button"] { touch-action: manipulation; }
+/* Герой в стиле баннера: тёмно-синий фон, сетка, орёл-водяной знак */
+.hero {
+	background-image:
+		url("../img/eagle-new.webp"),
+		radial-gradient(62% 90% at 76% 54%, rgba(176, 24, 44, .24), transparent 62%),
+		radial-gradient(95% 130% at 88% 4%, rgba(36, 92, 170, .58), transparent 55%),
+		linear-gradient(115deg, #020a14 0%, #05172c 44%, #0a2342 100%);
+	background-repeat: no-repeat;
+	background-position: right -4rem center, center, center, center;
+	background-size: min(34rem, 40vw) auto, auto, auto, auto;
+	box-shadow: inset 0 0 14rem rgba(0, 0, 0, .28);
+}
+.hero::before { display: none; }
+.hero::after {
+	background-image:
+		linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px);
+	background-size: 4.5rem 4.5rem;
+}
+.hero__tag {
+	max-width: 64rem;
+	font-size: .625rem;
+	letter-spacing: .08em;
+	line-height: 1.45;
+	white-space: normal;
+}
+@media (max-width: 900px) {
+	.hero { background-position: right -22% center, center, center, center; background-size: 62vw auto, auto, auto, auto; }
+	.hero__tag { font-size: .58rem; letter-spacing: .05em; }
+}
+
+/* Кнопки «Доступность» и «Поиск» в шапке: шире и аккуратнее */
+.nav-extra .icon-btn--text {
+	width: auto;
+	min-width: 0;
+	height: 2.6rem;
+	padding: 0 1.1rem;
+	border-radius: 8px;
+	gap: .5rem;
+	font-size: .8125rem;
+	font-weight: 700;
+	letter-spacing: .01em;
+	white-space: nowrap;
+	background: linear-gradient(#fff, #f7f9fc);
+	box-shadow: 0 1px 2px rgba(7, 26, 51, .05);
+}
+.nav-extra .icon-btn--text .icon { color: var(--red); }
+.nav-extra .icon-btn--text:hover {
+	background: var(--navy);
+	border-color: var(--navy);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(7, 26, 51, .16);
+}
+.nav-extra .icon-btn--text:hover .icon { color: #fff; }
+@media (max-width: 1200px) and (min-width: 901px) {
+	.nav-extra .icon-btn--text { padding: 0 .8rem; font-size: .75rem; }
+}
+
+/* Поле вложения в форме обратной связи */
+input[type="file"].input {
+	height: auto;
+	padding: .55rem .7rem;
+	background: #fff;
+	cursor: pointer;
+}
+input[type="file"]::file-selector-button {
+	margin-right: .75rem;
+	padding: .45rem .8rem;
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	background: var(--navy-050);
+	color: var(--navy);
+	font-weight: 700;
+	cursor: pointer;
+}
+input[type="file"]::file-selector-button:hover { background: var(--navy); color: #fff; }
+
+#fb-attachment-info { color: var(--navy-700); margin-top: .35rem; }
+
+/* Карточки предприятий: длинные названия шахт не выходят за рамки */
+.contact-card > div:last-child { min-width: 0; }
+.contact-card__value { overflow-wrap: anywhere; }
+
+/* Кнопка MAX в подвале */
+.footer__max {
+	display: inline-flex;
+	align-items: center;
+	gap: .55rem;
+	margin-top: .9rem;
+	padding: .45rem .7rem;
+	border: 1px solid rgba(255, 255, 255, .22);
+	border-radius: 8px;
+	color: #fff;
+	font-weight: 700;
+	font-size: .8125rem;
+	text-decoration: none;
+	transition: background .16s ease, border-color .16s ease;
+}
+.footer__max:hover { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .4); color: #fff; }
+.footer__max img { display: block; width: 1.75rem; height: 1.75rem; }
+.footer__responsible { margin-top: .8rem; }
+
+/* Цитата в светлых секциях: тёмный текст на светлой подложке */
+.memory-quote { font-weight: 500; }
+.section:not(.section--navy) .memory-quote {
+	background: #f4f7fc;
+	color: var(--navy-900);
+	border-left: 4px solid var(--gold);
+	box-shadow: inset 0 0 0 1px var(--line);
+}
+.section:not(.section--navy) .memory-quote footer {
+	color: var(--navy-700);
+	font-weight: 600;
+}
+.section--navy .memory-quote { color: #fff; }
+.section--navy .memory-quote footer { color: #cdd9ec; }
+
+/* Страница 404 */
+.error-hero__in {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 2rem;
+	align-items: center;
+}
+.error-hero__code {
+	font-size: clamp(6rem, 17vw, 13rem);
+	line-height: .8;
+	font-weight: 900;
+	letter-spacing: -.08em;
+	color: var(--gold);
+	text-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+.error-hero .eyebrow { color: var(--gold-light); }
+.error-hero__search {
+	display: flex;
+	gap: .5rem;
+	max-width: 42rem;
+	margin: 1.4rem 0 1rem;
+}
+.error-hero__search .input { flex: 1; min-width: 0; }
+.error-hero__actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+@media (max-width: 760px) {
+	.error-hero__in { grid-template-columns: 1fr; gap: 1rem; }
+	.error-hero__code { font-size: 5.5rem; }
+	.error-hero__search { flex-direction: column; }
+	.error-hero__search .btn { justify-content: center; }
+}
+
+.footer__socials { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+.footer__socials .footer__max { margin-top: 0; }
+
+/* Три быстрых карточки после удаления аварийного блока */
+.quick-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 980px) { .quick-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .quick-grid--3 { grid-template-columns: 1fr; } }
+
+/* Кнопка «Все контакты» — крупнее и выразительнее */
+.contacts-cta {
+	min-height: 3.25rem;
+	padding: 0 1.9rem;
+	font-size: 1rem;
+	border-radius: 10px;
+	border: 1px solid rgba(201, 164, 76, .45);
+	background: linear-gradient(135deg, var(--navy-700), var(--navy-950));
+	box-shadow: 0 10px 24px rgba(6, 21, 40, .22);
+	transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.contacts-cta .icon { color: var(--gold-light); }
+.contacts-cta:hover {
+	background: linear-gradient(135deg, var(--navy-600), var(--navy-900));
+	transform: translateY(-2px);
+	box-shadow: 0 14px 30px rgba(6, 21, 40, .3);
+}
+@media (max-width: 640px) {
+	.contacts-cta { width: 100%; justify-content: center; }
+}
+
+/* Плавные переходы между секциями главной */
+#about {
+	background: linear-gradient(180deg, #fff 0%, #fff calc(100% - 2.5rem), var(--bg-soft) 100%);
+}
+#activity {
+	background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-soft) calc(100% - 2.5rem), #fff 100%);
+}
+#structure {
+	background: linear-gradient(180deg, #fff 0%, #fff calc(100% - 2.5rem), var(--bg-soft) 100%);
+}
+#news {
+	background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-soft) calc(100% - 2.5rem), #fff 100%);
+}
+#documents {
+	background: linear-gradient(180deg, #fff 0%, #fff calc(100% - 2.5rem), var(--navy-900) 100%);
+}
+#memory {
+	background:
+		radial-gradient(90% 140% at 10% 0%, rgba(28, 74, 140, .5), transparent 60%),
+		linear-gradient(180deg, var(--navy-900) 0%, var(--navy-900) calc(100% - 2.5rem), #fff 100%);
+}
+@media (prefers-reduced-motion: no-preference) {
+	html { scroll-behavior: smooth; }
+}
+
+/* Плотнее секции на главной */
+.home .section { padding: 2.75rem 0; }
+.home .section--tight { padding: 1.75rem 0; }
+.home .hero__in { padding-bottom: 2.75rem; }
+@media (max-width: 760px) {
+	.home .section { padding: 2rem 0; }
+	.home .section--tight { padding: 1.5rem 0; }
+	.home .hero__in { padding-bottom: 2rem; }
+}
+
+/* Меньше зазор между «О филиале» и «Деятельностью» */
+.home #about { padding-bottom: 1.5rem; }
+.home #activity { padding-top: 1.5rem; }
+@media (max-width: 760px) {
+	.home #about { padding-bottom: 1.25rem; }
+	.home #activity { padding-top: 1.25rem; }
+}
+
+/* Единый компактный ритм секций главной */
+.home #activity,
+.home #structure,
+.home #news,
+.home #documents,
+.home #memory,
+.home #contacts-short {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+@media (max-width: 760px) {
+	.home #activity,
+	.home #structure,
+	.home #news,
+	.home #documents,
+	.home #memory,
+	.home #contacts-short {
+		padding-top: 1.25rem;
+		padding-bottom: 1.25rem;
+	}
+}
+
+/* Компактные отступы на странице «Контакты» */
+.page-id-12 .section { padding: 2.25rem 0; }
+.page-id-12 .section--tight { padding: 1.5rem 0; }
+@media (max-width: 760px) {
+	.page-id-12 .section { padding: 1.75rem 0; }
+	.page-id-12 .section--tight { padding: 1.25rem 0; }
+}
+
+/* Компактные отступы на странице «Об отряде» */
+.page-id-6 .section { padding: 2.25rem 0; }
+.page-id-6 .section--tight { padding: 1.5rem 0; }
+@media (max-width: 760px) {
+	.page-id-6 .section { padding: 1.75rem 0; }
+	.page-id-6 .section--tight { padding: 1.25rem 0; }
+}
+
+/* Схема служб на странице «Структура» */
+.org-services {
+	width: 100%;
+	max-width: 52rem;
+	display: grid;
+	gap: 1.15rem;
+}
+.org-service { position: relative; }
+.org-service + .org-service::before {
+	content: "";
+	position: absolute;
+	top: -1.15rem;
+	left: 50%;
+	width: 2px;
+	height: 1.15rem;
+	background: var(--line-strong);
+	transform: translateX(-1px);
+}
+.org-service__head {
+	padding: .85rem 1.25rem;
+	background: var(--bg-soft);
+	border: 1px solid var(--line);
+	border-top: 3px solid var(--red);
+	border-radius: var(--radius);
+	text-align: center;
+	color: var(--navy);
+	font-weight: 800;
+	font-size: 1rem;
+}
+.org-service__items {
+	position: relative;
+	margin-top: 1rem;
+	padding-top: 1rem;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: .6rem;
+}
+.org-service__items::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 2px;
+	height: 1rem;
+	background: var(--line-strong);
+	transform: translateX(-1px);
+}
+.org-subnode {
+	padding: .75rem .5rem;
+	background: #fff;
+	border: 1px solid var(--line);
+	border-radius: .6rem;
+	text-align: center;
+	color: var(--navy);
+	font-weight: 700;
+	font-size: .9rem;
+}
+.org-service--single .org-service__head { border-top-color: var(--navy); }
+@media (max-width: 480px) {
+	.org-service__items { grid-template-columns: 1fr; }
+}
+
+/* Почта в блоке приёмной в шапке */
+.hotline__email {
+	display: flex;
+	align-items: center;
+	gap: .3rem;
+	margin-top: .12rem;
+	font-size: .7rem;
+	line-height: 1.25;
+	color: var(--muted);
+	white-space: nowrap;
+}
+.hotline__email .icon { color: var(--red); flex-shrink: 0; }
+.hotline__email a { color: var(--navy-700); }
+.hotline__email a:hover { color: var(--red); text-decoration: underline; }
+
+/* Герой без карточки приёмной: текст слева, показатели справа */
+.hero__in {
+	grid-template-columns: minmax(0, 1.5fr) minmax(15rem, .5fr);
+	gap: 3rem;
+	align-items: center;
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+.hero__content { max-width: 52rem; }
+.hero h1 { max-width: 48rem; font-size: clamp(2.15rem, 4.3vw, 3.7rem); }
+.hero__lead { max-width: 44rem; }
+.hero__actions { gap: .8rem; }
+.hero__facts {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.5rem 1.25rem;
+	margin: 0;
+	padding: 0 0 0 2rem;
+	border-top: 0;
+	border-left: 1px solid rgba(255, 255, 255, .16);
+}
+.hero__fact strong { font-size: 1.75rem; }
+.hero__fact span { font-size: .78rem; max-width: 9rem; }
+@media (max-width: 900px) {
+	.hero__in { grid-template-columns: 1fr; gap: 2rem; padding-top: 3.5rem; padding-bottom: 3.5rem; }
+	.hero__facts {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		padding: 1.5rem 0 0;
+		border-left: 0;
+		border-top: 1px solid rgba(255, 255, 255, .16);
+	}
+	.hero__fact span { max-width: none; }
+}
+@media (max-width: 560px) {
+	.hero__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Кнопки быстрых действий в шапке */
+.masthead__nav-in { flex-wrap: wrap; row-gap: .45rem; }
+.nav-extra { margin-left: auto; }
+.nav-extra .icon-btn--text { width: auto; padding: 0 .7rem; }
+.nav-extra .btn-sm {
+	min-height: 2.35rem;
+	padding: .45rem .75rem;
+	font-size: .78rem;
+	white-space: nowrap;
+}
+[data-a11y-toggle][aria-pressed="true"] {
+	background: var(--navy);
+	border-color: var(--navy);
+	color: #fff;
+}
+[data-a11y-toggle][aria-pressed="true"] .icon { color: var(--gold-light); }
+@media (max-width: 1180px) {
+	.masthead__nav-in { flex-wrap: wrap; row-gap: .45rem; }
+	.nav-extra__desktop { width: 100%; justify-content: flex-end; }
+	.nav-extra .btn-sm { padding: .4rem .6rem; font-size: .72rem; }
+}
+
+/* Выход из версии для слабовидящих без открытия меню */
+.a11y-exit {
+	display: none;
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	z-index: 10000;
+	align-items: center;
+	gap: .45rem;
+	padding: .8rem 1rem;
+	background: #000;
+	color: #fff;
+	border: 2px solid #fff;
+	border-radius: 8px;
+	font: inherit;
+	font-weight: 800;
+	cursor: pointer;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+html[data-a11y-large="1"] .a11y-exit { display: inline-flex; }
+.a11y-exit:hover { background: #fff; color: #000; border-color: #000; }
+@media (max-width: 560px) {
+	.a11y-exit { right: .6rem; bottom: .6rem; padding: .7rem .8rem; }
+}
+
+/* Подменю в шапке: раскрытие при наведении */
+@media (hover: hover) and (pointer: fine) {
+	.nav-item--sub:hover > .submenu,
+	.nav-item--sub:focus-within > .submenu {
+		display: block;
+		animation: submenuIn .14s var(--ease);
+	}
+}

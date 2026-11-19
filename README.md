@@ -1,11 +1,17 @@
-<div align="center">
+# Сайт Новокузнецкого ВГСО
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Исходники сайта филиала «Новокузнецкий ВГСО» ФГУП «ВГСЧ».
 
-  <h1>Built with AI Studio</h2>
+## Структура
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- `site/` — статический прототип и исходные материалы дизайна;
+- `deploy/theme-src/` — исходники дочерней темы WordPress `nvgso`;
+- `deploy/ИНСТРУКЦИЯ.md` — инструкция по эксплуатации сайта;
+- `deploy/*.sh` — вспомогательные скрипты развёртывания.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Важно
 
-</div>
+Пароли, ключи, дампы БД и резервные копии в репозиторий не добавляются.
+Рабочие настройки сервера хранятся вне репозитория.
+
+Сайт: https://nvgso.ru

@@ -1,0 +1,19 @@
+{
+  "name": "Официальный сайт филиала «Новокузнецкий ВГСО» ФГУП «ВГСЧ»",
+  "short_name": "Новокузнецкий ВГСО",
+  "description": "Горноспасательный отряд Кузбасса: история, структура, новости, документы и контакты дежурной службы.",
+  "lang": "ru",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#071a33",
+  "categories": ["government", "public-safety", "news"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

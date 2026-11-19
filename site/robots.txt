@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /search.html
+
+# Служебные и демонстрационные разделы
+Disallow: /404.html
+
+Sitemap: https://nvgso.vgsch.ru/sitemap.xml

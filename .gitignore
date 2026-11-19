@@ -1,0 +1,18 @@
+# Local tools and browser profiles
+_tools/
+nvgso-site-upload.zip
+*.zip
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Logs and local backups
+*.log
+deploy/backups/
+deploy/*.sql
+
+# Node (if added later)
+node_modules/
